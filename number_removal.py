@@ -1,32 +1,22 @@
-# Import Library
-import string
-import re
-
-# Membuka File
-file_dokumen = open("dataset/d001.txt", "r")
-
-# Membaca File
-isi_dokumen = file_dokumen.read()
-
-# Menampilkan Isi File
-print("Isi Dokumen : ")
-print(isi_dokumen)
-print("")
-
-# Case Folding
-hasil_case_folding = isi_dokumen.lower()
-print("Isi Dokumen Hasil Case Folding : ")
-print(hasil_case_folding)
-print("")
-
-# Punctuation Removal
-hasil_punctuation_removal = hasil_case_folding.translate(str.maketrans("","",string.punctuation))
-print("Isi Dokumen Hasil Punctuation Removal : ")
-print(hasil_punctuation_removal)
-print("")
-
 # Number Removal
-hasil_number_removal = re.sub(r"\d+", "", hasil_punctuation_removal)
-print("Isi Dokumen Hasil Number Removal : ")
-print(hasil_number_removal)
-print("")
+# Created by : Pasnur
+# pasnur@akba.ac.id
+
+# Import library yang dibutuhkan
+from nltk.tokenize import RegexpTokenizer
+
+# Contoh dokumen
+dokumen = "Kampus STMIK AKBA, berlokasi di Jl. Perintis Kemerdekaan No.75 Makassar"
+
+# Menghilangkan tanda baca dan pembuatan token
+tokenizer = RegexpTokenizer(r'\w+')
+tokens = tokenizer.tokenize(dokumen.lower())
+
+# Menghilangkan angka
+token_tanpa_angka = []
+for token in tokens:
+    if token.isnumeric() == False:
+        token_tanpa_angka.append(token)
+
+# Menampilkan hasil
+print(token_tanpa_angka)

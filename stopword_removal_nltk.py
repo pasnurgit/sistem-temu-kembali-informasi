@@ -1,10 +1,10 @@
-# Stopword Removal Sastrawi
+# Stopword Removal NLTK
 # Created by : Pasnur
 # pasnur@akba.ac.id
 
 # Import library yang dibutuhkan
 from nltk.tokenize import RegexpTokenizer
-from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+from nltk.corpus import stopwords
 
 # Contoh dokumen
 dokumen = "Saya adalah seorang dosen di kampus STMIK AKBA"
@@ -14,11 +14,10 @@ tokenizer = RegexpTokenizer(r'\w+')
 tokens = tokenizer.tokenize(dokumen.lower())
 
 # Menghilangkan stopword
-factory = StopWordRemoverFactory()
-stopword_sastrawi = factory.get_stop_words()
+stopword_list =  set(stopwords.words("indonesian"))
 token_tanpa_stopword = []
 for token in tokens:
-    if token not in stopword_sastrawi:
+    if token not in stopword_list:
         token_tanpa_stopword.append(token)
 
 # Menampilkan hasil
